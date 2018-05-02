@@ -1,6 +1,6 @@
 {
   "name": "can-super-model",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A real-time, fall-through caching, data model layer",
   "homepage": "http://canjs.com",
   "repository": {
