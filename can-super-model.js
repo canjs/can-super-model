@@ -18,7 +18,7 @@ var canReflect = require("can-reflect");
 var QueryLogic = require("can-query-logic");
 
 function superModel(options){
-    options = canReflect.serialize(options);
+    options = canReflect.assignDeep({},options);
 
     if(!options.name) {
         options.name = canReflect.getName(options.Map)+".connection";

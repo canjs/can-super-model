@@ -169,3 +169,23 @@ QUnit.test("allow other caches (#59)", function(){
 		start();
 	});
 });
+
+QUnit.test("passes queryLogic", function(){
+    var Todo = DefineMap.extend("Todo",{
+        _id: {identity: true, type: "number"}
+    });
+    var TodoList = DefineList.extend({
+        "#": Todo
+    });
+
+    var ql = new QueryLogic(Todo);
+
+    var connection = superModel({
+        Map: Todo,
+        List: TodoList,
+        url: "/api/todos/{_id}",
+        queryLogic: ql
+    });
+
+    QUnit.equal(connection.queryLogic, ql, "same query logic");
+});
