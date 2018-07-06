@@ -1,6 +1,6 @@
 @module {function} can-super-model
 @parent can-data-modeling
-@collection can-core
+@collection can-ecosystem
 @outline 2
 
 @description Connect a type to a restful data source, automatically manage
