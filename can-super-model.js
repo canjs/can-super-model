@@ -13,11 +13,25 @@ var dataUrl = require("can-connect/data/url/url");
 var fallThroughCache = require("can-connect/fall-through-cache/fall-through-cache");
 var realTime = require("can-connect/real-time/real-time");
 var callbacksOnce = require("can-connect/constructor/callbacks-once/callbacks-once");
+var DefineList = require("can-define/list/list");
+var DefineMap = require("can-define/map/map");
 var namespace = require("can-namespace");
 var canReflect = require("can-reflect");
 var QueryLogic = require("can-query-logic");
 
-function superModel(options){
+function superModel(optionsOrUrl) {
+
+	// If optionsOrUrl is a string, make options = {url: optionsOrUrl}
+	var options = (typeof optionsOrUrl === "string") ? {url: optionsOrUrl} : optionsOrUrl;
+
+	// If options.Map or .List aren’t provided, define them
+	if (typeof options.Map === "undefined") {
+		options.Map = DefineMap.extend({seal: false}, {});
+	}
+	if (typeof options.List === "undefined") {
+		options.List = options.Map.List || DefineList.extend({"#": options.Map});
+	}
+
     options = canReflect.assignDeep({},options);
 
     if(!options.name) {
