@@ -5,8 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-super-model/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/can-super-model.svg)](https://www.npmjs.com/package/can-super-model)
 [![Travis build status](https://travis-ci.org/canjs/can-super-model.svg?branch=master)](https://travis-ci.org/canjs/can-super-model)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-super-model?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-super-model)
-[![Coverage status](https://coveralls.io/repos/github/canjs/can-super-model/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-super-model?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-super-model.svg)](https://greenkeeper.io/)
 
 A real-time, fall-through caching, data model layer
