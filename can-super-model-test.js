@@ -8,7 +8,7 @@ var canReflect = require("can-reflect");
 var QueryLogic = require("can-query-logic");
 
 QUnit.module('can-super-model',{
-    setup: function(){
+    beforeEach: function(assert) {
         localStorage.clear();
     }
 });
@@ -49,7 +49,7 @@ QUnit.test("basics", function(assert){
     var todoStore = fixture.store([],new QueryLogic(Todo));
 
     fixture("/api/todos/{_id}",todoStore);
-    QUnit.stop();
+    var done = assert.async();
 
     var createdTodo,
         allList,
@@ -84,7 +84,7 @@ QUnit.test("basics", function(assert){
             return connection.createInstance(instance);
         }).then(function(created){
             pushCreatedTodo = created;
-            QUnit.ok(created._id, "has an id");
+            assert.ok(created._id, "has an id");
             assert.equal(allList.length, 2, "one item added");
         });
     })
@@ -107,7 +107,7 @@ QUnit.test("basics", function(assert){
                     sort: "-points",
                     filter: {dueDate: {$gt: new Date(2001,3,30).toString()}}
                 }).then(function(list){
-                    QUnit.deepEqual(list.serialize(),[
+                    assert.deepEqual(list.serialize(),[
                         {
                             _id: 1,
                             name: "lawn",
@@ -130,21 +130,21 @@ QUnit.test("basics", function(assert){
         });
     })
     .then(function(){
-        QUnit.start();
+        done();
     },function(err){
-        QUnit.ok(false,err);
-        QUnit.start();
+        assert.ok(false,err);
+        done();
     });
 
 
 });
 
 
-QUnit.test("allow other caches (#59)", function(){
+QUnit.test("allow other caches (#59)", function(assert) {
 
 	var cacheConnection = {
 		getData: function(){
-			ok(true, "called this cacheConnection");
+			assert.ok(true, "called this cacheConnection");
 			return Promise.resolve({id: 5});
 		}
 	};
@@ -164,13 +164,13 @@ QUnit.test("allow other caches (#59)", function(){
 		}
 	});
 
-	stop();
+	var done = assert.async();
 	connection.getData({_id: 5}).then(function(){
-		start();
+		done();
 	});
 });
 
-QUnit.test("passes queryLogic", function(){
+QUnit.test("passes queryLogic", function(assert) {
     var Todo = DefineMap.extend("Todo",{
         _id: {identity: true, type: "number"}
     });
@@ -187,7 +187,7 @@ QUnit.test("passes queryLogic", function(){
         queryLogic: ql
     });
 
-    QUnit.equal(connection.queryLogic, ql, "same query logic");
+    assert.equal(connection.queryLogic, ql, "same query logic");
 });
 
 QUnit.test("string signature", function(assert) {
