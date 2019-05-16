@@ -8,7 +8,7 @@ var canReflect = require("can-reflect");
 var QueryLogic = require("can-query-logic");
 
 QUnit.module('can-super-model',{
-    beforeEach: function(assert) {
+    beforeEach: function() {
         localStorage.clear();
     }
 });
