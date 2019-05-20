@@ -45,7 +45,7 @@
     "can-define": "^2.2.0",
     "can-globals": "^1.0.1",
     "can-namespace": "^1.0.0",
-    "can-query-logic": "<2.0.0",
+    "can-query-logic": "1.1.13",
     "can-reflect": "^1.15.2"
   },
   "devDependencies": {
